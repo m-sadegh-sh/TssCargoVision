@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "TssCargoVision": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "http://tss.local:8080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://tss.local:8080"
+    }
+  }
+}
