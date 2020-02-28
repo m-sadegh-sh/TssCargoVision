@@ -28,7 +28,7 @@ namespace TssCargoVision.Wsdl
             ));
         }
 
-        public async Task<TResponse> InvokeAsync<TRequest, TResponse>(TRequest request)
+        public async Task<TResponse> PostAsJsonAsync<TRequest, TResponse>(TRequest request)
         {
             var rawResponse = await _httpClient.PostAsJsonAsync(
                 _underlyingConnectionOptions.ServiceUri,

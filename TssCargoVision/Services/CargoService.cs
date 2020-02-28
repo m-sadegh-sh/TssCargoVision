@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using TssCargoVision.Models;
+using TssCargoVision.Operations.GetBookingList;
 using TssCargoVision.Operations.GetBooking;
+using TssCargoVision.Operations.GetDeliveryMessageList;
+using TssCargoVision.Operations.GetDeliveryMessage;
 using TssCargoVision.Wsdl;
 
 namespace TssCargoVision.Services
@@ -18,68 +19,32 @@ namespace TssCargoVision.Services
             _wsdlClient = wsdlClient;
         }
 
+        public async Task<GetBookingListResponse> GetBookingList(GetBookingListRequest request)
+        {
+            return await _wsdlClient.PostAsJsonAsync<GetBookingListRequest, GetBookingListResponse>(
+                request
+            );
+        }
+
         public async Task<GetBookingResponse> GetBooking(GetBookingRequest request)
         {
-            return new GetBookingResponse
-            {
-                Status = "OK",
-                ErrorCode = null,
-                BookingInformation = new BookingInformationModel
-                {
-                    VersionNumber = "1",
-                    BookingNumber = "1023",
-                    ManifestNumber = "112",
-                    RegistrationDate = 12221455,
-                    PermitType = "A",
-                    ShippingCompany = new CompanyModel
-                    {
-                        NationalCode = "124453",
-                        Name = "Iran Air Tour"
-                    },
-                    ShippingAgentCompany = new CompanyModel
-                    {
-                        NationalCode = "1222221",
-                        Name = "Avang Agency"
-                    },
-                    Terminal = new TerminalModel
-                    {
-                        ID = "10",
-                        Name = "HNM",
-                        Place = new PlaceModel
-                        {
-                            Country = "IR",
-                            City = "Mashhad",
-                            PostalCode = "123123123",
-                            Address = "Mashhad, HNM"
-                        }
-                    },
-                    Vessel = new VesselModel
-                    {
-                        Name = "Boeing 777 Max"
-                    },
-                    Captain = new CrewModel
-                    {
-                        Name = "Jahanian",
-                        Rank = "Cap"
-                    },
-                    CrewList = new List<CrewModel>
-                    {
-                        new CrewModel
-                        {
-                            Name = "Jahanian",
-                            Rank = "Cap"
-                        },
-                        new CrewModel
-                        {
-                            Name = "Bilian",
-                            Rank = "Sup"
-                        }
-                    }
-                }
-            };
-            //return await _wsdlClient.InvokeAsync<GetBookingRequest, GetBookingResponse>(
-            //    request
-            //);
+            return await _wsdlClient.PostAsJsonAsync<GetBookingRequest, GetBookingResponse>(
+                request
+            );
+        }
+
+        public async Task<GetDeliveryMessageListResponse> GetDeliveryMessageList(GetDeliveryMessageListRequest request)
+        {
+            return await _wsdlClient.PostAsJsonAsync<GetDeliveryMessageListRequest, GetDeliveryMessageListResponse>(
+                request
+            );
+        }
+
+        public async Task<GetDeliveryMessageResponse> GetDeliveryMessage(GetDeliveryMessageRequest request)
+        {
+            return await _wsdlClient.PostAsJsonAsync<GetDeliveryMessageRequest, GetDeliveryMessageResponse>(
+                request
+            );
         }
     }
 }
