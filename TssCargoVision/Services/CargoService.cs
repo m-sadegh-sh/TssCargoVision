@@ -5,6 +5,7 @@ using TssCargoVision.Operations.GetBooking;
 using TssCargoVision.Operations.GetDeliveryMessageList;
 using TssCargoVision.Operations.GetDeliveryMessage;
 using TssCargoVision.Wsdl;
+using TssCargoVision.Operations;
 
 namespace TssCargoVision.Services
 {
@@ -21,29 +22,29 @@ namespace TssCargoVision.Services
 
         public async Task<GetBookingListResponse> GetBookingList(GetBookingListRequest request)
         {
-            return await _wsdlClient.PostAsJsonAsync<GetBookingListRequest, GetBookingListResponse>(
-                request
+            return await _wsdlClient.PostAsJsonAsync<GetBookingListResponse>(
+                TssRequest.Create("GetBookingList", request)
             );
         }
 
         public async Task<GetBookingResponse> GetBooking(GetBookingRequest request)
         {
-            return await _wsdlClient.PostAsJsonAsync<GetBookingRequest, GetBookingResponse>(
-                request
+            return await _wsdlClient.PostAsJsonAsync<GetBookingResponse>(
+                TssRequest.Create("GetBooking", request)
             );
         }
 
         public async Task<GetDeliveryMessageListResponse> GetDeliveryMessageList(GetDeliveryMessageListRequest request)
         {
-            return await _wsdlClient.PostAsJsonAsync<GetDeliveryMessageListRequest, GetDeliveryMessageListResponse>(
-                request
+            return await _wsdlClient.PostAsJsonAsync<GetDeliveryMessageListResponse>(
+                TssRequest.Create("GetDeliveryMessageList", request)
             );
         }
 
         public async Task<GetDeliveryMessageResponse> GetDeliveryMessage(GetDeliveryMessageRequest request)
         {
-            return await _wsdlClient.PostAsJsonAsync<GetDeliveryMessageRequest, GetDeliveryMessageResponse>(
-                request
+            return await _wsdlClient.PostAsJsonAsync<GetDeliveryMessageResponse>(
+                TssRequest.Create("GetDeliveryMessage", request)
             );
         }
     }

@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using TssCargoVision.Configuration;
+using TssCargoVision.Operations;
 
 namespace TssCargoVision.Wsdl
 {
@@ -28,7 +29,7 @@ namespace TssCargoVision.Wsdl
             ));
         }
 
-        public async Task<TResponse> PostAsJsonAsync<TRequest, TResponse>(TRequest request)
+        public async Task<TResponse> PostAsJsonAsync<TResponse>(TssRequest request)
         {
             var rawResponse = await _httpClient.PostAsJsonAsync(
                 _underlyingConnectionOptions.ServiceUri,
