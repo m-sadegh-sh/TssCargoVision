@@ -31,9 +31,17 @@ namespace TssCargoVision.Wsdl
 
         public async Task<TResponse> PostAsJsonAsync<TResponse>(TssRequest request)
         {
-            var rawResponse = await _httpClient.PostAsJsonAsync(
-                _underlyingConnectionOptions.ServiceUri,
-                request
+            var content = new FormUrlEncodedContent(request.Params);
+
+            var message = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = _underlyingConnectionOptions.ServiceUri,
+                Content = content
+            };
+
+            var rawResponse = await _httpClient.SendAsync(
+                message
             );
 
             rawResponse.EnsureSuccessStatusCode();
